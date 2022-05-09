@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import fourms
 
-def index(request):
-    return HttpResponse("과연 될까")
+def index(requset):
+    article = fourms.objects.all()
+    return render(requset, 'pages/lists.html', {'article_list': article})

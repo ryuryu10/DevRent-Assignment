@@ -1,0 +1,9 @@
+{% if article_list %}
+    <ul>
+    {% for article in article_list %}
+        <li><a href="/fourm/{{ article.id }}/">{{ article.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>글이 없습니다.</p>
+{% endif %}
