@@ -18,3 +18,18 @@ def create(requset):
     else:
         form = WRITE_Form()
         return render(requset, 'pages/article_create.html', {'form':form})
+
+def update(request, article_id):
+    article = fourms.objects.get(id=article_id)
+    if request.method == "POST":
+        article.title = request.POST['title']
+        article.body = request.POST['content']
+        article.save()
+        return redirect(f'/detail/{article_id}',{'article_update':article})
+    else:
+        article=fourms()
+        return render(request, 'article_update.html', {'article_update':article})
+
+def delete(request, article_id):
+    article = fourms.objects.get(id = article_id)
+    article.delete()
