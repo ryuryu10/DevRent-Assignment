@@ -1,7 +1,11 @@
 {% if article_list %}
 <ul>
     {% for article in article_list %}
-    <li><a href="{% url 'details' article.id %}">{{ article.title }}</a></li>
+    <li>
+        <a href="{% url 'details' article.id %}">{{ article.title }}</a>
+        <a href="{% url 'update' article.id %}">수정하기</a>
+        <a href="{% url 'delete' article.id %}">삭제하기</a>
+    </li>
     {% endfor %}
 </ul>
 {% else %}

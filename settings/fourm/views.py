@@ -25,7 +25,7 @@ def update(request, article_id):
         form = WRITE_Form(request.POST, instance=article)
         if form.is_valid():
             form.save()
-            return redirect('details', article_id=article_id.id)
+            return redirect('details', article_id=article.id)
     else:
         form = WRITE_Form(instance=article)
     return render(request, 'pages/article_create.html', {'form':form})

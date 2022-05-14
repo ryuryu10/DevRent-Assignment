@@ -1,6 +1,5 @@
 <h1>{{ article_detail.title }}</h1>
+<h2>{{ article_detail.created_date }}</h2>
 <div>
     {{ article_detail.content }}
 </div>
-<a href="{% url 'update' article_detail.id %}">수정하기</a>
-<a href="{% url 'delete' article_detail.id %}">삭제하기</a>
