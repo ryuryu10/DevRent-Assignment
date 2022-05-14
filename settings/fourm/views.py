@@ -20,16 +20,18 @@ def create(requset):
         return render(requset, 'pages/article_create.html', {'form':form})
 
 def update(request, article_id):
-    article = fourms.objects.get(id=article_id)
+    article = get_object_or_404(fourms, id=article_id)
     if request.method == "POST":
-        article.title = request.POST['title']
-        article.body = request.POST['content']
-        article.save()
-        return redirect(f'/detail/{article_id}',{'article_update':article})
+        form = WRITE_Form(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('details', article_id=article_id.id)
     else:
-        article=fourms()
-        return render(request, 'article_update.html', {'article_update':article})
+        form = WRITE_Form(instance=article)
+    return render(request, 'pages/article_create.html', {'form':form})
 
 def delete(request, article_id):
     article = fourms.objects.get(id = article_id)
     article.delete()
+    article = fourms.objects.all()
+    return render(request, 'pages/article_index.html', {'article_list': article})
